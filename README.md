@@ -1,9 +1,8 @@
-# TOOP17 Working with Pololu Motors and Gyro
-Now that we can use the OLED and Push Buttons, it's time to make the robot move and turn!
+# TOOP19 Working with the Linse Sensor
+The line sensor is the last sensro we will utilize with the Pololu robot.
 
 ## References
-- [Pololu Motor Library Documentation](https://pololu.github.io/pololu-3pi-plus-32u4-arduino-library/class_pololu3pi_plus32_u4_1_1_motors.html)
-- [Pololu IMU Library Documentation](https://pololu.github.io/pololu-3pi-plus-32u4-arduino-library/class_pololu3pi_plus32_u4_1_1_i_m_u.html)
+- [Pololu Line Sensor Library Documentation](https://pololu.github.io/pololu-3pi-plus-32u4-arduino-library/class_pololu3pi_plus32_u4_1_1_line_sensors.html)
 
 ## Working with Motors
 Your Pololu robot comes with two micro motors. These can be made to turn clockwise or counterclockwise from zero to a maximum speed. The speed of your robot will vary with battery charge.  Like the OLED and Buttons, you must include the Pololu library and create a motor object from the `Motors` class:
