@@ -11,14 +11,16 @@ The 3pi+ 32U4 features five downward-facing line sensors. The five line sensors 
 
 Here are some of the commands you may frequently use:
 ```
-void calibrate()  //calibrated the bump sensors
-uint8_t read()  //Reads both sensors
-void leftChanged()  //Indicates a state change of left bump sensor since last read
-void rightChanged()  //Indicates a state change of right bump sensor since last read
+void calibrate()  //calibrated the line sensors
+void read(uint16_t*sensorValues)  //Reads raw sensor values inat an array
+void readCalibrated(uint16_t*sensorValues)  //Reads che sensors and provided calibrated values between 0 and 1000
+uint16_t readLineBlack(uint16_t*sensorValues//Indicates a state change of right bump sensor since last read
 void leftisPressed() //Indacates left bump sensor is pressed
 void rightisPressed() //Indacates right bump sensor is pressed
 ```
 ## Sensor Calibration
+Prior to utilizing your line sensors it is a good idea to calibrate the sensors.  Use the funciton below to calibrate your sensors.  When you call this function, the robot will rotate back and forth over the line to determine the max and min thresholds for the IR sensors.  
+
 ```
 void calibrateSensors()
 {
@@ -47,18 +49,15 @@ void calibrateSensors()
 The goal of this exercise is to properly display heading and test the different speeds of your motors.
 
 1. Create a new Platform IO project:
-- Use the starter code in this repository to get a head start.
-- Ensure your `platform.ini` file has the proper library dependancies configured.
-- Place the `TurnSensor.h` header file in this repository in the `include` directory of your Platform IO project.
 2. In `setup()`:
 - Initialize your display.
-- Initilaize your turn sensor.
-- Display a warning message `DO NOT MOVE ROBOT` during the gyro initilization.
+- Wait for the user to press a button and then calibrate your line sensors.
+- Display a warning message once calibration is complete.
+- Wait for the user to press a button untill you continue onto the loop.
 3. In `loop()`:
-- Update your turn sensor heading and display the heading on the first line of your display
-- Drive your robot forward at a slow speed for 1 second if button A is pressed.
-- Drive your robot forward at a medium speed for 1 second if button B is pressed.
-- Drive your robot forward at a fast speed for 1 second if button C is pressed.
+- Move your robot forward continuously, untill your robot senses a line.
+- Consider the speed that you want to move forward.
+- Consider the conditions under which you want your robot to stop.
 
 
 
