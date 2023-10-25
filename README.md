@@ -4,10 +4,10 @@ The line sensor is the last sensro we will utilize with the Pololu robot.
 ## References
 - [Pololu Line Sensor Library Documentation](https://pololu.github.io/pololu-3pi-plus-32u4-arduino-library/class_pololu3pi_plus32_u4_1_1_line_sensors.html)
 
-## Working with Motors
-Your Pololu robot comes with two micro motors. These can be made to turn clockwise or counterclockwise from zero to a maximum speed. The speed of your robot will vary with battery charge.  Like the OLED and Buttons, you must include the Pololu library and create a motor object from the `Motors` class:
+## Working with Line Sensors
+The 3pi+ 32U4 features five downward-facing line sensors. The five line sensors are on the underside of the board along the front edge and can help the 3pi+ distinguish between light and dark surfaces. Each reflectance sensor consists of a down-facing infrared (IR) emitter LED paired with a phototransistor that can detect reflected infrared light from the LED. Use the below to create a lineSensor object:
 
-`Motors motor`
+`LineSensors lineSensors;`
 
 Here are some of the commands you may frequently use:
 ```
@@ -18,49 +18,31 @@ void rightChanged()  //Indicates a state change of right bump sensor since last 
 void leftisPressed() //Indacates left bump sensor is pressed
 void rightisPressed() //Indacates right bump sensor is pressed
 ```
-
-## Working with the IMU (Inertial Measurement Unit)
-The 3pi+ 32U4 includes on-board inertial sensors that allow it to determine its own orientation by implementing an inertial measurement unit (IMU). The first chip, an ST LSM6DS33, combines a 3-axis accelerometer and 3-axis gyro into a single package. The second chip is an ST LIS3MDL 3-axis magnetometer.
-To utilize the IMU working we have to explicitly include the Pololu IMU library `#include <Pololu3piPlus32U4IMU.h>`.  We also must create an IMU object from the `IMU` class:
-
-`IMU imu`
-
-Working direclty with the IMU library can be a bit cumbersome.  To assist, you will want to utilize the provided TurnSensor.h header file.  Download this file and save in the `include` drectory of your PlatformIO project.  The purpose of this file is to allow you use predefined functions in your main.cpp to better control the gyro heading sensor. After you have created your objects, then be sure to include the TurnSensor.h file. 
-
-Here are some of the command you may frequently use:
+## Sensor Calibration
 ```
-void turnSensorSetup()  //This should be called in setup() to calibrate your robot. 
-void turnSensorReset() //This resets the starting point for measuring a turn.
-void turn SensorUpdate()  //This reads the gyro and updates the heading.
-```
+void calibrateSensors()
+{
+  // Wait 1 second and then begin automatic sensor calibration
+  // by rotating in place to sweep the sensors over the line
+  delay(1000);
+  for(uint16_t i = 0; i < 80; i++)
+  {
+    if (i > 20 && i <= 60)
+    {
+      motors.setSpeeds(-60, 60);
+    }
+    else
+    {
+      motors.setSpeeds(60, -60);
+    }
 
-## Putting it all together
-Here is a basic starting point for future projects that need to use buttons, display, motors, and IMUs.
-```
-#include <Arduino.h>
-#include <Pololu3piPlus32U4.h>
-#include <Pololu3piPlus32U4IMU.h>
-
-using namespace Pololu3piPlus32U4;
-
-OLED display;
-ButtonA buttonA;
-ButtonB buttonB;
-ButtonC buttonC;
-Motors motor;
-IMU imu;
-
-#include "TurnSensor.h"
-
-void setup(){
-
+    lineSensors.calibrate();
+  }
+  motors.setSpeeds(0, 0);
 }
-
-void loop(){
-
-}
-
 ```
+
+
 ## Exercise
 The goal of this exercise is to properly display heading and test the different speeds of your motors.
 
