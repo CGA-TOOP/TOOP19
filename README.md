@@ -1,5 +1,5 @@
-# TOOP19 Working with the Linse Sensor
-The line sensor is the last sensro we will utilize with the Pololu robot.
+# TOOP19 Working with the Line Sensor
+The line sensor is the last sensor we will utilize with the Pololu robot.
 
 ## References
 - [Pololu Line Sensor Library Documentation](https://pololu.github.io/pololu-3pi-plus-32u4-arduino-library/class_pololu3pi_plus32_u4_1_1_line_sensors.html)
@@ -18,7 +18,7 @@ uint16_t readLineBlack(uint16_t*sensorValues) // Reads the sensors, provides cal
 
 ```
 ## Sensor Calibration
-Prior to utilizing your line sensors it is a good idea to calibrate the sensors.  Use the funciton below to calibrate your sensors.  When you call this function, the robot will rotate back and forth over the line to determine the max and min thresholds for the IR sensors.  
+Prior to utilizing your line sensors, it is a good idea to calibrate the sensors using the function below. When you call this function, the robot will rotate back and forth over the line to determine the max and min thresholds for the IR sensors.  
 
 ```
 void calibrateSensors()
