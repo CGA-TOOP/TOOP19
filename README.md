@@ -14,9 +14,8 @@ Here are some of the commands you may frequently use:
 void calibrate()  //calibrated the line sensors
 void read(uint16_t*sensorValues)  //Reads raw sensor values inat an array
 void readCalibrated(uint16_t*sensorValues)  //Reads che sensors and provided calibrated values between 0 and 1000
-uint16_t readLineBlack(uint16_t*sensorValues//Indicates a state change of right bump sensor since last read
-void leftisPressed() //Indacates left bump sensor is pressed
-void rightisPressed() //Indacates right bump sensor is pressed
+uint16_t readLineBlack(uint16_t*sensorValues) //Indicates a state change of right bump sensor since last read
+
 ```
 ## Sensor Calibration
 Prior to utilizing your line sensors it is a good idea to calibrate the sensors.  Use the funciton below to calibrate your sensors.  When you call this function, the robot will rotate back and forth over the line to determine the max and min thresholds for the IR sensors.  
