@@ -14,7 +14,7 @@ Here are some of the commands you may frequently use:
 void calibrate()  //calibrated the line sensors
 void read(uint16_t*sensorValues)  //Reads raw sensor values inat an array
 void readCalibrated(uint16_t*sensorValues)  //Reads che sensors and provided calibrated values between 0 and 1000
-uint16_t readLineBlack(uint16_t*sensorValues) //Indicates a state change of right bump sensor since last read
+uint16_t readLineBlack(uint16_t*sensorValues) // Reads the sensors, provides calibrated values, and returns an estimated black line position.
 
 ```
 ## Sensor Calibration
