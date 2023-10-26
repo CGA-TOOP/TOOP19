@@ -12,8 +12,8 @@ The 3pi+ 32U4 features five downward-facing line sensors. The five line sensors 
 Here are some of the commands you may frequently use:
 ```
 void calibrate()  //calibrated the line sensors
-void read(uint16_t*sensorValues)  //Reads raw sensor values inat an array
-void readCalibrated(uint16_t*sensorValues)  //Reads che sensors and provided calibrated values between 0 and 1000
+void read(uint16_t*sensorValues)  //Reads raw sensor values into an array
+void readCalibrated(uint16_t*sensorValues)  //Reads the sensors and provided calibrated values between 0 and 1000
 uint16_t readLineBlack(uint16_t*sensorValues) // Reads the sensors, provides calibrated values, and returns an estimated black line position.
 
 ```
